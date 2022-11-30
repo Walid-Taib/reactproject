@@ -31,7 +31,7 @@ class DishDetail extends Component{
     }
 
     renderDish=(dish)=>{
-        if(dish!==null)
+        if(dish!==undefined)
             return(
                 <Card>
                 <CardImg top src={dish.image} alt={dish.name} />
@@ -47,19 +47,10 @@ class DishDetail extends Component{
     }
 
     render(){
-        const test=this.props.dishSelected;
-        if(test==null){
 
-        }
-        else{
-            return(<div>  
-                     {test.name}
-
-            </div>)
-        }
         return(
         <div className="container">
-
+            {this.renderDish(this.props.dishSelected)}
 
         </div>)
     }
