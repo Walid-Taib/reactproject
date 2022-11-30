@@ -7,6 +7,8 @@ class DishDetail extends Component{
 
 
     renderComment=(dish)=>{
+        console.log('dish comment:')
+
         if(dish!==null){
             const list =dish.comments.map((comments)=>{
                 return(
@@ -23,6 +25,7 @@ class DishDetail extends Component{
             </div>)
         }
         else{
+
             return(<div></div>)
         }
     }
@@ -44,19 +47,20 @@ class DishDetail extends Component{
     }
 
     render(){
+        const test=this.props.dishSelected;
+        if(test==null){
+
+        }
+        else{
+            return(<div>  
+                     {test.name}
+
+            </div>)
+        }
         return(
         <div className="container">
-            <div className="row">
-                <div className="col-12 col-sm-6">
-                    {this.renderDish(this.props.dishSelected)}
 
-                </div>
-                <div className="col-12 col-sm-6">
-                    {this.renderComment(this.props.dishSelected)}
 
-                </div>
-
-            </div>
         </div>)
     }
 }
