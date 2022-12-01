@@ -4,6 +4,7 @@ import React,{ Component } from 'react';
 import Main from './components/MainComponent';
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap-social/bootstrap-social.css'
+import './App.css';
 class App extends Component{
   constructor(props){
     super(props);
