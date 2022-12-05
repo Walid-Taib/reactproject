@@ -5,7 +5,7 @@ const RenderMenuItem=({dish ,onClick})=>{
     return(
         <div>
             <Card 
-                onClick={() =>  onClick(dish.id)}>
+                >
                 <CardImg width="100%" src={dish.image} alt={dish.name} />
                 <CardImgOverlay>
                     <CardTitle>{dish.name}</CardTitle>
@@ -39,7 +39,7 @@ class Menu extends Component{
          const menu=this.props.dishes.map((dish)=>{
             return (
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <RenderMenuItem dish={dish} onClick={this.props.onClick}/>
+                    <RenderMenuItem dish={dish}/>
                 </div>
               );
         })
