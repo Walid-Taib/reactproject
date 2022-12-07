@@ -9,6 +9,7 @@ import Home from "./HomeCompnent";
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
+import About from "./AboutUsComponent";
 class Main extends Component{
     constructor(props){
         super(props);
@@ -53,7 +54,7 @@ class Main extends Component{
                         <Route component={HomePage} path='/Home'/>
                         <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
                         <Route path='/menu/:dishId' component={DishWithId} />
-
+                        <Route path='/aboutus' component={()=><About leaders={this.state.leaders}/>}/>
                         <Redirect to='/Home' />
                     </Switch>
                     <Footer/>
