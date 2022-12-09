@@ -1,14 +1,18 @@
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+    Button, Modal, ModalHeader, ModalBody,
+    Form, FormGroup, Input, Label } from 'reactstrap';
 import { Component } from 'react';
 
 class Header extends Component {
     constructor(props) {
         super(props);
-    
+        this.toggleModal = this.toggleModal.bind(this);
+
         this.toggleNav = this.toggleNav.bind(this);
         this.state = {
-          isNavOpen: false
+            isNavOpen: false,
+            isModalOpen: false
         };
       }
 
@@ -18,9 +22,22 @@ class Header extends Component {
         });
       }
 
+
+      toggleModal() {
+        this.setState({
+          isModalOpen: !this.state.isModalOpen
+        });
+      }
+
     render() {
         return(
             <div>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+                    
+                    </ModalBody>
+                </Modal>
                 <Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
@@ -39,6 +56,12 @@ class Header extends Component {
                             <NavItem>
                                 <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                             </NavItem>
+
+                            </Nav>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </div>
