@@ -6,6 +6,11 @@ import 'font-awesome/css/font-awesome.css';
 import 'bootstrap-social/bootstrap-social.css'
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+const store = ConfigureStore();
 class App extends Component{
   constructor(props){
     super(props);
@@ -17,7 +22,13 @@ class App extends Component{
   render(){
     return(
       <div className="App">
-        <BrowserRouter><Main/></BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
       </div>
     )
   }
