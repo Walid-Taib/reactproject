@@ -6,7 +6,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 
 
 const required = (val) => val && val.length;
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const maxLength = (len) => (val) => !(val)||(val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
@@ -20,7 +20,7 @@ class  Contact extends Component{
         super(props);
         this.state = {
             firstname: '',
-            lastname: '',
+            lastname: '', 
             telnum: '',
             email: '',
             agree: false,

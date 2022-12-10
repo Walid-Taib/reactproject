@@ -4,6 +4,11 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Form, FormGroup, Input, Label } from 'reactstrap';
 import { Component } from 'react';
 
+
+const required=(val)=>val && val.length;
+const maxLength =(len)=>(val)=>!(val)||(val.length<=len)
+
+
 class Header extends Component {
     constructor(props) {
         super(props);
