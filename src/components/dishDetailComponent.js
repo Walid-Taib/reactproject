@@ -89,9 +89,14 @@ class CommentForm extends Component{
             isModalOpen:false
         }
         this.ChangeModal=this.ChangeModal.bind(this);
+        this.HandSubmit=this.HandSubmit.bind(this)
     }
     ChangeModal(){
         this.setState({isModalOpen:!this.state.isModalOpen});
+    }
+    HandSubmit(values){
+        alert(JSON.stringify(values));
+        this.ChangeModal();
     }
     render(){
         return(
@@ -99,7 +104,7 @@ class CommentForm extends Component{
                 <Modal isOpen={this.state.isModalOpen} toggle={this.ChangeModal}>
                     <ModalHeader>Add Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={(values)=>this.handSubmit(values)}>
+                        <LocalForm onSubmit={(values)=>this.HandSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="name" md={2}>Name</Label>
                                 <Col md={10}>
@@ -116,10 +121,17 @@ class CommentForm extends Component{
                                         <option>3</option>
                                         <option>4</option>
                                         <option>5</option>
-
                                     </Control.select>
                                 </Col>
                             </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="comment" md={2}>Comment</Label>
+                                <Col>
+                                    <Control.textarea size={10} md={10} model='.comment' className="form-control" name="comment" id="name"/>
+
+                                </Col>
+                            </Row>
+                            <Button type={onsubmit} color="primary">Add Comment</Button>
                         </LocalForm>
                     </ModalBody>
                 </Modal>
