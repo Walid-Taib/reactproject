@@ -36,7 +36,12 @@ const     RenderComment=({comments})=>{
         const list =comments.map((comment)=>{return(
             <div key={comment.id}>{comment.comment}</div> )
         })
-        return(list)
+        return(
+            <div>
+                {list}
+                <CommentForm/>
+            </div>
+        )
 
     }
     else{
@@ -45,76 +50,82 @@ const     RenderComment=({comments})=>{
 }
 
 
-class DishDetail extends Component{
+const DishDetail=(props)=> {
+    return(
+
+            <div className="container">
+
+
+            <div className="row">
+                <Breadcrumb>
+
+                    <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                </Breadcrumb>
+                <div className="col-12">
+                    <h3>{props.dish.name}</h3>
+                    <hr />
+                </div>                
+            </div>
+            <div className="row">
+                <div className="col-12 col-md-5 m-1">
+                    <RenderDish dish={props.dish} />
+                </div>
+                <div className="col-12 col-md-5 m-1">
+                    <RenderComment  comments={props.comments}/>
+                </div>
+            </div>
+            </div>
+        );
     
+}
+
+
+
+class CommentForm extends Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state={
-            isModalOpen:false,
-            rating:'',
-            name:'',
-            comment:'',
-
-        };
-        this.handSubmit=this.handSubmit.bind(this)
-        this.ToggleModal=this.ToggleModal.bind(this);
-
+            isModalOpen:false
+        }
+        this.ChangeModal=this.ChangeModal.bind(this);
     }
-    handSubmit(event){
-        console.log('Current state is ' +JSON.stringify(this.state) );
-        alert('Current state is ' +JSON.stringify(this.state));
-        event.preventDefault();
-    }
-    ToggleModal(){
+    ChangeModal(){
         this.setState({isModalOpen:!this.state.isModalOpen});
     }
-
-
-
-
     render(){
-
-        return (
-            <div className="container">
-                <Modal isOpen={this.state.isModalOpen} toggle={this.ToggleModal}>
+        return(
+            <div>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.ChangeModal}>
                     <ModalHeader>Add Comment</ModalHeader>
                     <ModalBody>
                         <LocalForm onSubmit={(values)=>this.handSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="name" md={2}>Name</Label>
                                 <Col md={10}>
-                                    <Control.text name="name" id="name" placeholder="name" model='.name' validators={{required}} />
+                                    <Control.text name="name" id="name" placeholder="name" model='.name' validators={{required}} className="form-control" />
                                     <Errors model='.name' className="text-danger" show='touched' messages={{required:'required'}}/>
                                 </Col>
                             </Row>
+                            <Row className="form-group">
+                                <Label md={2} htmlFor="rating">Rating</Label>
+                                <Col md={10}>
+                                    <Control.select className="form-control" md={10} model='rating' name="rating">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
 
+                                    </Control.select>
+                                </Col>
+                            </Row>
                         </LocalForm>
                     </ModalBody>
                 </Modal>
-
-            <div className="row">
-                <Breadcrumb>
-
-                    <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
-                </Breadcrumb>
-                <div className="col-12">
-                    <h3>{this.props.dish.name}</h3>
-                    <hr />
-                </div>                
-            </div>
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    <RenderDish dish={this.props.dish} />
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    <RenderComment  comments={this.props.comments}/>
-                    <Button outline onClick={this.ToggleModal}>Add Comment</Button>
-                </div>
-            </div>
-            </div>
-        );
-}
+                <Button  onClick={this.ChangeModal}>Add Comment</Button>
+            </div>)
+    }
 }
 
 export default DishDetail;
