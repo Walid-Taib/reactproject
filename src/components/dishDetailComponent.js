@@ -31,7 +31,7 @@ const     RenderDish=({dish})=>{
 
 
 
-const     RenderComment=({comments})=>{
+const     RenderComment=({comments,addComment,dishId})=>{
     if(comments!==null){
         const list =comments.map((comment)=>{return(
             <div key={comment.id}>{comment.comment}</div> )
@@ -39,7 +39,7 @@ const     RenderComment=({comments})=>{
         return(
             <div>
                 {list}
-                <CommentForm/>
+                <CommentForm addComment={addComment} dishId={dishId}/>
             </div>
         )
 
@@ -72,7 +72,7 @@ const DishDetail=(props)=> {
                     <RenderDish dish={props.dish} />
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <RenderComment  comments={props.comments}/>
+                    <RenderComment  comments={props.comments} dishId={props.dish.id} addComment={props.addComment}/>
                 </div>
             </div>
             </div>
@@ -96,6 +96,7 @@ class CommentForm extends Component{
     }
     HandSubmit(values){
         alert(JSON.stringify(values));
+        this.props.addComment(this.props.dishId,values.rating,values.author,values.comment)
         this.ChangeModal();
     }
     render(){
