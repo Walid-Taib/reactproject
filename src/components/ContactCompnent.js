@@ -34,10 +34,10 @@ class  Contact extends Component{
     }
 
 
-    handleSubmit(event) {
-        console.log('Current State is: ' + JSON.stringify(this.state));
-        alert('Current State is: ' + JSON.stringify(this.state));
-        event.preventDefault();
+    handleSubmit(values) {
+        console.log('Current State is: ' + JSON.stringify(values));
+        alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackForm();
     }
 
 
@@ -176,6 +176,7 @@ class  Contact extends Component{
                                      />
                                 </Col>
                             </Row>
+                            <Button type='submit'>submit</Button>
                         </LocalForm>
                     </div>
                </div>
