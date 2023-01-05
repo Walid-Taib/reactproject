@@ -100,4 +100,4 @@ class Main extends Component{
         }
       }
       
-      export default withRouter(connect(mapStateToProps,{fetchDishes})(Main));
+      export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));

@@ -2,7 +2,7 @@ import React ,{Component} from "react";
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, Button, Row, Label, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, Errors, LocalForm } from "react-redux-form";
+import { Control, Errors ,Form, LocalForm } from "react-redux-form";
 import { Loading } from './LoadingComponent';
 
 
@@ -127,7 +127,7 @@ class CommentForm extends Component{
                 <Modal isOpen={this.state.isModalOpen} toggle={this.ChangeModal}>
                     <ModalHeader>Add Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={(values)=>this.HandSubmit(values)}>
+                        <LocalForm  onSubmit={(values)=>this.HandSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="name" md={2}>Name</Label>
                                 <Col md={10}>
