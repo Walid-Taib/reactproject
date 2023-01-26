@@ -2,8 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label } from 'reactstrap';
-import { Component } from 'react';
-
+import React ,{Component} from 'react';
 
 const required=(val)=>val && val.length;
 const maxLength =(len)=>(val)=>!(val)||(val.length<=len)
